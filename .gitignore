@@ -1,0 +1,7 @@
+.idea/
+.vs/
+.vscode/
+build/
+install/
+cmake-build-debug/
+Folder.DotSettings.user

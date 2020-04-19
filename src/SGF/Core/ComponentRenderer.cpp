@@ -18,6 +18,11 @@ void ComponentRenderer::ShouldClearCallbacks(bool b)
 ComponentRenderer::~ComponentRenderer()
 {
 	if (m_ShouldClearCallbacks) m_Ctx->Events.PurgeCallbacks();
+
+	for (auto i = m_Deque.begin(); i < m_Deque.end(); ++i)
+	{
+		delete *i;
+	}
 }
 
 bool ComponentRenderer::Detach(const string& name)

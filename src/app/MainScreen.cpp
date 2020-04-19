@@ -30,15 +30,19 @@ MainScreen::MainScreen(Core::pSharedContext ctx)
 	
 	menu->CreateOption(
 		"Classic Perlin",
-		[NoiseLayer]() { NoiseLayer->Create(NoiseTest::PERLIN); }
+		std::bind(&NoiseTest::Create, NoiseLayer, NoiseTest::PERLIN)
 	);
 	menu->CreateOption(
 		"Fractal Perlin",
-		[NoiseLayer]() { NoiseLayer->Create(NoiseTest::FRACTAL); }
+		std::bind(&NoiseTest::Create, NoiseLayer, NoiseTest::FRACTAL)
 	);
 	menu->CreateOption(
 		"Improved Perlin",
-		[NoiseLayer]() { NoiseLayer->Create(NoiseTest::IMPROVED); }
+		std::bind(&NoiseTest::Create, NoiseLayer, NoiseTest::IMPROVED)
+	);
+	menu->CreateOption(
+		"Improved 3D Calc",
+		std::bind(&NoiseTest::Create, NoiseLayer, NoiseTest::IMPROVED3D)
 	);
 	
 }

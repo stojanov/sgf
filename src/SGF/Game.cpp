@@ -31,10 +31,14 @@ void Game::Run()
 
 		frameTime = newTime - currentTime;
 
+		/*
 		if (frameTime > fixedDt) // limit dt in case of pause / out of focus
 		{
 			frameTime = fixedDt;
 		}
+		*/
+
+		frameTime = std::clamp(frameTime, 0.f, fixedDt);
 
 		currentTime = newTime;
 		acc += frameTime;

@@ -16,7 +16,6 @@ Handler::~Handler()
 		delete i.second;
 	}
 
-	m_Objects.clear();
 	m_Ctx->Events.DeleteComponent(this);
 }
 

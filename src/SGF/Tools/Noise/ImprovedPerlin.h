@@ -16,7 +16,7 @@ public:
 
 	SGF_DECIMAL Fractal2(SGF_DECIMAL x, SGF_DECIMAL y);
 	SGF_DECIMAL Fractal3(SGF_DECIMAL x, SGF_DECIMAL y, SGF_DECIMAL z);
-	
+
 	void offsetX(SGF_DECIMAL x);
 	void offsetY(SGF_DECIMAL y);
 	void offsetZ(SGF_DECIMAL z);

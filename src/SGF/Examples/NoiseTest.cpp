@@ -42,6 +42,9 @@ void NoiseTest::Job()
 		case IMPROVED:
 			_createNoise(std::bind(&sgf::Tools::ImprovedPerlin::Fractal2, m_ImprovedPerlin, _1, _2));
 			break;
+		case IMPROVED3D:
+			_createNoise(std::bind(&sgf::Tools::ImprovedPerlin::Fractal3, m_ImprovedPerlin, _1, _2, 1.f));
+			break;
 		default: break;
 		}
 

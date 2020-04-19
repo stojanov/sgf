@@ -15,7 +15,9 @@ public:
 	{
 		PERLIN,
 		FRACTAL,
-		IMPROVED
+		IMPROVED,
+		IMPROVED3D,
+		MYNOISE
 	};
 
 	NoiseTest(sgf::Core::pSharedContext ctx);

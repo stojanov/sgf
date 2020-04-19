@@ -99,11 +99,13 @@ SGF_DECIMAL ImprovedPerlin::Perlin3(SGF_DECIMAL x, SGF_DECIMAL y, SGF_DECIMAL z)
 SGF_DECIMAL ImprovedPerlin::Fractal2(SGF_DECIMAL x, SGF_DECIMAL y)
 {
 	SGF_DECIMAL total = 0;
-	
+	SGF_DECIMAL freq = 0;
+	SGF_DECIMAL amplitude = 0;
+
 	for (unsigned int i = 0; i < m_octaves - 1; i++)
 	{
-		SGF_DECIMAL freq = pow(2, i);
-		SGF_DECIMAL amplitude = pow(m_persistence, i);
+		freq = pow(2, i);
+		amplitude = pow(m_persistence, i);
 
 		total += Perlin2(
 			(m_scale * (x + static_cast<double>(m_offsetX)))* freq,
@@ -117,13 +119,15 @@ SGF_DECIMAL ImprovedPerlin::Fractal2(SGF_DECIMAL x, SGF_DECIMAL y)
 SGF_DECIMAL ImprovedPerlin::Fractal3(SGF_DECIMAL x, SGF_DECIMAL y, SGF_DECIMAL z)
 {
 	SGF_DECIMAL total = 0;
+	SGF_DECIMAL freq = 0;
+	SGF_DECIMAL amplitude = 0;
 	
 	for (unsigned int i = 0; i < m_octaves - 1; i++)
 	{
-		SGF_DECIMAL freq = pow(2, i);
-		SGF_DECIMAL amplitude = pow(m_persistence, i);
+		freq = pow(2, i);
+		amplitude = pow(m_persistence, i);
 
-		total += Fractal3(
+		total += Perlin3(
 			(m_scale * (x + static_cast<double>(m_offsetX)))* freq,
 			(m_scale * (y + static_cast<double>(m_offsetY)))* freq,
 			(m_scale * (z + static_cast<double>(m_offsetZ)))* freq

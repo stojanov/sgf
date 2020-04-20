@@ -1,27 +1,32 @@
-#include "MainScreen.h"
+#include "NoiseTestState.h"
 
 #include "Core/CoreTypes.h"
-#include "UI/Button.h"
 #include "Examples/NoiseTest.h"
 #include "UI/Handler.h"
-#include "UI/StackMenu.h"
 #include "UI/DropDownMenu.h"
+#include "UI/FPSCounter.h"
+#include "Examples/SpatialHashTest.h"
 
 using namespace sgf;
 
-MainScreen::MainScreen(Core::pSharedContext ctx)
-	: State(ctx)
+NoiseTestState::NoiseTestState(Core::pSharedContext ctx)
+	:
+	State(ctx)
 {
 	m_ID = "Main Screen";
 
 	auto font = Core::LoadFont("font.ttf");
 	
 	auto NoiseLayer = m_Renderer.Attach<NoiseTest>("noiseTest");
+	
 	auto UI = m_Renderer.Attach<UI::Handler>("UI");
 	
 	UI->setDefaultFont(font);
 	
 	auto menu = UI->Create<UI::DropDownMenu>("menus");
+	auto FPS = UI->Create<UI::FPSCounter>("fps");
+
+	FPS->SetPosition(UI::FPSCounter::Position::BOT_RIGHT);
 
 	menu->SetCharSize(12);
 	menu->SetButtonSize(150, 20);
@@ -47,14 +52,14 @@ MainScreen::MainScreen(Core::pSharedContext ctx)
 	
 }
 
-void MainScreen::Init()
+void NoiseTestState::Init()
 {
 }
 
-void MainScreen::Pause()
+void NoiseTestState::Pause()
 {
 }
 
-void MainScreen::Resume()
+void NoiseTestState::Resume()
 {
 }

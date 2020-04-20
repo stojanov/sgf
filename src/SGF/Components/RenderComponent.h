@@ -7,7 +7,8 @@ class RenderComponent: public Renderable
 {
 public:
 	RenderComponent(Core::pSharedContext ctx);
-
+	virtual ~RenderComponent() = default;
+	
 	void Deactivate();
 	void Activate();
 

@@ -13,7 +13,8 @@ public:
 	static Random& get();
 	static void init();
 
-	int Int(int a, int b)
+	template<int a, int b>
+	int Int()
 	{
 		std::uniform_int_distribution<int> dist(a, b);
 		return dist(m_Engine);

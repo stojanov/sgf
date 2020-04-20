@@ -14,6 +14,9 @@ using std::tuple;
 SGF_NAMESPACE(::Tools::SpatialHash)
 /*
  * TODO: Create a custom hash function instead of relying on std::string
+ * TODO: Start from scratch and rewrite everything
+ * Bug: Misses on a block that should be in the table
+ * VERY VERY BUGGY VERY UNRELIABLE
  */
 using CollidableList = std::list<Collidable*>;
 
@@ -31,7 +34,7 @@ enum MapObjectIndex
 	NodeIdx,
 	StrIdx
 };
-	
+// Should use a pair not a tuple
 using MapObject = tuple<ListNode*, string>;
 using BlockMap = unordered_map<std::string, List>;
 using ObjectMap = unordered_map<int, std::vector<MapObject>>;

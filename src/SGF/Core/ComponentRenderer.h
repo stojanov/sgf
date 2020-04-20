@@ -41,8 +41,8 @@ public:
 	}
 	bool Detach(const string& name);
 	
-	void Activate(const string& name);
-	void Deactivate(const string& name);
+	void Activate(const string& name) const;
+	void Deactivate(const string& name) const;
 
 	template<typename T>
 	T* GetAs(const string& name) const

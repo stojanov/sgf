@@ -9,7 +9,7 @@ class UIComponent: public Renderable
 {
 public:
 	UIComponent(Core::pSharedContext ctx);
-	~UIComponent() = default;
+	virtual ~UIComponent() = default;
 
 	virtual bool UsesFont() = 0;
 };

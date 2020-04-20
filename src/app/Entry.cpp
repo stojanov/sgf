@@ -1,5 +1,6 @@
 #include "Game.h"
-#include "MainScreen.h"
+#include "NoiseTestState.h"
+#include "SpatialHashTestState.h"
 
 /*
 #ifdef NDEBUG
@@ -14,7 +15,7 @@ int main()
 {
 	sgf::Game g;
 
-	g.PushState<MainScreen>();
+	g.PushState<SpatialHashTestState>();
 	g.Run();
 	
 	int k;

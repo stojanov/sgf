@@ -42,19 +42,19 @@ bool ComponentRenderer::Detach(const string& name)
 	return false;
 }
 
-void ComponentRenderer::Activate(const string& name)
+void ComponentRenderer::Activate(const string& name) const
 {
 	if (auto comp = Get(name); comp)
 		comp->Activate();
 }
 
-void ComponentRenderer::Deactivate(const string& name)
+void ComponentRenderer::Deactivate(const string& name) const
 {
 	if (auto comp = Get(name); comp)
 		comp->Deactivate();
 }
 
-RenderComponent* ComponentRenderer::Get(const string& name) const
+ComponentRenderer::RenderObjectType* ComponentRenderer::Get(const string& name) const
 {
 	auto ptr = m_Map.find(name);
 

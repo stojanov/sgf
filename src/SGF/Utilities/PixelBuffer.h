@@ -19,7 +19,6 @@ public:
 		m_Tex.create(m_Width, m_Height);
 		m_Sprite.setTexture(m_Tex);
 
-
 		ILOG << "Created PixelBuffer: " << pixelSize << " " << width << " " << height;
 	}
 
@@ -30,14 +29,24 @@ public:
 		m_Height = p.m_Height;
 
 		m_Tex.create(m_Width, m_Height);
+		m_Sprite.setTexture(m_Tex);
+		
+		auto* ptr = m_Data.release();
+		delete ptr;
 
+		m_Data = std::make_unique<pixelType>(new pixelType[m_PixelSize * m_Width * m_Height]);
+		for (unsigned int i = 0; i < m_Width * m_Height * m_PixelSize; i++)
+		{
+			m_Data.get()[i] = p.m_Data.get()[i];
+		}
+		
 		return *this;
 	}
 	
 	void Fill(int clr)
 	{
 		for (unsigned int i = 0; i < m_Width * m_Height * m_PixelSize; i++)
-			m_Data[i] = pixelType(clr);
+			m_Data.get()[i] = pixelType(clr);
 	}
 
 	const std::unique_ptr<pixelType>& getData() const { return m_Data; }

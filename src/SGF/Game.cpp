@@ -11,12 +11,11 @@ void Game::PopState()
 
 Game::Game()
 {
-	m_Ctx = Core::CreateSharedContext("Test", sf::VideoMode(800, 600));
+	m_Ctx = Core::CreateContext("Test", sf::VideoMode(800, 600));
 }
 
 void Game::Run()
 {
-	constexpr float fixedDt = 0.1f;
 	float newTime, frameTime, interpolation = 0;
 
 	float currentTime = m_Clock.getElapsedTime().asSeconds();
@@ -24,35 +23,35 @@ void Game::Run()
 
 	while (m_Ctx->Window->getSFWindow()->isOpen())
 	{
-		//m_Ctx->Window->getSFWindow()->clear();
+		m_Ctx->Window->getSFWindow()->clear();
 		m_States.ProcessStates();
 
 		newTime = m_Clock.getElapsedTime().asSeconds();
-
+		
 		frameTime = newTime - currentTime;
-
-		/*
-		if (frameTime > fixedDt) // limit dt in case of pause / out of focus
-		{
-			frameTime = fixedDt;
-		}
-		*/
-
-		frameTime = std::clamp(frameTime, 0.f, fixedDt);
 
 		currentTime = newTime;
 		acc += frameTime;
 
-		// Simulate delay between frames in case of lag spikes
-		while (acc >= m_dt)
+		if (acc > m_LowBoundDt)
+		{
+			// Simulate delay between frames in case of lag spikes
+			while (acc >= m_LowBoundDt)
+			{
+				m_Ctx->Window->HandleEvents();
+				m_States.getActiveState()->Update(m_LowBoundDt);
+
+				acc -= m_LowBoundDt;
+			}
+			interpolation = acc / m_LowBoundDt;
+		}
+		else
 		{
 			m_Ctx->Window->HandleEvents();
-			m_States.getActiveState()->Update(m_dt);
-
-			acc -= m_dt;
+			m_States.getActiveState()->Update(frameTime);
+			acc -= frameTime;
+			interpolation = acc / frameTime;
 		}
-
-		interpolation = acc / m_dt;
 
 		m_States.getActiveState()->Draw(interpolation);
 

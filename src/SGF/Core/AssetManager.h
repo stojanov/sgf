@@ -11,14 +11,14 @@
 #include "Namespace.h"
 
 using std::string;
-using std::tuple;
+using std::pair;
 using std::vector;
 using std::shared_ptr;
 using std::unordered_map;
 
 SGF_NAMESPACE(::Core)
 
-using UnloadedAsset = tuple<string, string>;
+using UnloadedAsset = pair<string, string>;
 using UnloadedAssetContainer = vector<UnloadedAsset>;
 	
 template<typename T>
@@ -34,7 +34,7 @@ public:
 	void Add(const string& name, const string& filepath)
 	{
 		IASSETLOG << "ASSET: " << name << '/' << filepath;
-		m_Unloaded.push_back(std::make_tuple(name, filepath));
+		m_Unloaded.push_back(std::make_pair(name, filepath));
 	}
 
 	shared_ptr<T> Get(const string& name) const
@@ -92,8 +92,8 @@ private:
 		IASSETLOG << "STARTED LOAD ASSET JOB: ";
 		for (const auto& asset : m_Unloaded)
 		{
-			const string name = std::get<0>(asset);
-			const string filepath = std::get<1>(asset);
+			const string name = asset.first;
+			const string filepath = asset.second;
 
 			if (_exists(name))
 			{

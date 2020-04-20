@@ -24,7 +24,7 @@ struct SharedContext
 
 using pSharedContext = shared_ptr<SharedContext>;
 
-inline pSharedContext CreateSharedContext(const std::string& name, sf::VideoMode mode)
+inline pSharedContext CreateContext(const std::string& name, sf::VideoMode mode)
 {
 	auto ctx = std::make_shared<SharedContext>();
 

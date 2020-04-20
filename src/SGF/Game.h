@@ -30,7 +30,7 @@ public:
 
 	void PopState();
 private:
-	const float m_dt = 1.f / 60.0f;
+	static constexpr float m_LowBoundDt = 1.f / 60.0f;
 	sf::Clock m_Clock;
 	Core::StateMachine m_States;
 	Core::pSharedContext m_Ctx;

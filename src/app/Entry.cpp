@@ -15,7 +15,7 @@ int main()
 {
 	sgf::Game g;
 
-	g.PushState<SpatialHashTestState>();
+	g.PushState<NoiseTestState>();
 	g.Run();
 	
 	int k;

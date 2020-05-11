@@ -8,10 +8,17 @@
 
 SGF_NAMESPACE(::Core)
 
+template<typename T>
+LoadedAsset<T> sfmlLoadFunction(const std::string& filepath)
+{
+	auto pShared = std::make_shared<T>();
+	return { pShared, pShared->loadFromFile(filepath) } ;
+}
+
 struct GroupAssets
 {
-	AssetManager<sf::Texture> textures;
-	AssetManager<sf::Font> fonts;
+	AssetManager<sf::Texture> textures{ "textures", sfmlLoadFunction<sf::Texture> };
+	AssetManager<sf::Font> fonts{ "fonts", sfmlLoadFunction<sf::Font> };
 };
 
 struct SharedContext

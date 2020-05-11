@@ -2,6 +2,7 @@
 
 #include "Utilities/Vec.h"
 #include "Components/UIComponent.h"
+#include "System/Core.h"
 
 SGF_NAMESPACE(::UI)
 	
